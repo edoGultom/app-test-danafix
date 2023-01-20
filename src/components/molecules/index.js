@@ -1,2 +1,3 @@
 import Header from "./Header";
-export { Header };
+import TabSection from "./TabSection";
+export { Header, TabSection };

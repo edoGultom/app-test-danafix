@@ -1,27 +1,26 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import Button from "../../components/atoms/Button";
 import TextInput from "../../components/atoms/TextInput";
 import Header from "../../components/molecules/Header";
-import { useDispatch } from "react-redux";
+import { signAction } from "../../redux/action/authAction";
 import { useForm } from "../../utils";
 
-const Login = ({ navigation }) => {
-  // const dispatch = useDispatch();
-  // //grouping form menjadi satu object
+const Login = () => {
+  const dispatch = useDispatch();
+
+  //form digrouping dalam satu object
   const [form, setForm] = useForm({
     phone_number: "",
   });
   const onSubmit = () => {
-    console.log(form);
-    const obj = {
-      form,
-      navigation: navigation,
-    };
-    // dispatch(signInAction(obj));
+    dispatch(signAction(form));
   };
+
   return (
     <div className="flex flex-col">
       <Header />
+
       <div className="flex flex-col items-center justify-center px-40 py-40">
         <p className="text-3xl p-10">Personal account for bussiness</p>
         <div className="flex items-center justify-start rounded-2xl px-10 py-10  w-5/12 border shadow-lg">
