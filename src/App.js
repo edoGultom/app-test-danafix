@@ -18,10 +18,10 @@ const MainApp = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route
+        <Route
           path="/"
           element={phone.length > 0 ? <Pengajuan /> : <Login />}
-        /> */}
+        />
         <Route path="/" element=<Pengajuan /> />
       </Routes>
     </BrowserRouter>
