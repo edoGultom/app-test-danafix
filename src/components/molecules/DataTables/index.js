@@ -103,17 +103,11 @@ export default function DataTables() {
       conditionalCellStyles: [
         {
           when: (row) => row.status === "Approved",
-          style: {
-            color: "green",
-            fontWeight: "bold",
-          },
+          classNames: ["text-green-600 font-bold"],
         },
         {
           when: (row) => row.status === "Rejected",
-          style: {
-            color: "red",
-            fontWeight: "bold",
-          },
+          classNames: ["text-red-600 font-bold"],
         },
       ],
     },
