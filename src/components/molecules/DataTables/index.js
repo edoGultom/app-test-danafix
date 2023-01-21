@@ -2,37 +2,43 @@ import React, { useMemo, useState } from "react";
 import DataTable from "react-data-table-component";
 import dataJson from "../../../records.json";
 import SearchInput from "../../atoms/SearchInput";
+import TextInput from "../../atoms/TextInput";
+import * as Moment from "moment";
 
 export default function DataTables() {
   const [filterText, setFilterText] = useState("");
+  const [filterDate, setDateFilter] = useState({
+    awal: "",
+    akhir: "",
+  });
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-  const filteredItems = dataJson.filter(
-    (data) =>
-      JSON.stringify(data).toLowerCase().indexOf(filterText.toLowerCase()) !==
-      -1
-  );
 
-  console.log(filterText, "filter");
-
-  const subHeaderComponentMemo = useMemo(() => {
-    const handleClear = () => {
-      if (filterText) {
-        setResetPaginationToggle(!resetPaginationToggle);
-        setFilterText("");
+  const filteredItems = dataJson
+    .filter((item) => {
+      return (
+        JSON.stringify(item).toLowerCase().indexOf(filterText.toLowerCase()) !==
+        -1
+      );
+    })
+    .filter((item) => {
+      if (filterDate.awal.length > 0 && filterDate.akhir.length > 0) {
+        return (
+          Date.parse(
+            Moment(
+              item.tanggal_pengajuan.toString().replace("-", "."),
+              "DD. M. YYYY"
+            ).format("YYYY-MM-DD")
+          ) >= Date.parse(Moment(filterDate.awal).format("YYYY-MM-DD")) &&
+          Date.parse(
+            Moment(
+              item.tanggal_pengajuan.toString().replace("-", "."),
+              "DD. M. YYYY"
+            ).format("YYYY-MM-DD")
+          ) <= Date.parse(Moment(filterDate.akhir).format("YYYY-MM-DD"))
+        );
       }
-    };
-
-    return (
-      <div className="flex flex-row justify-start items-center">
-        <SearchInput
-          placeholder="Pencarian"
-          onChange={(e) => setFilterText(e.target.value)}
-          //   onClear={handleClear}
-          //   filterText={filterText}
-        />
-      </div>
-    );
-  }, [filterText, resetPaginationToggle]);
+      return item;
+    });
 
   const columns = [
     {
@@ -110,14 +116,46 @@ export default function DataTables() {
   ];
 
   return (
-    <DataTable
-      columns={columns}
-      data={filteredItems}
-      pagination
-      persistTableHead
-      paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
-      subHeader
-      subHeaderComponent={subHeaderComponentMemo}
-    />
+    <>
+      <div className="flex flex-row justify-between items-center py-5">
+        <div className="flex flex-col items-start">
+          <p>Tanggal Pengajuan</p>
+          <div className="flex flex-row justify-between items-center">
+            <TextInput
+              type="date"
+              className="rounded-xl"
+              onChange={(e) =>
+                setDateFilter({
+                  ...filterDate,
+                  awal: e.target.value,
+                })
+              }
+            />
+            <span className="text-sm">{"<>"}</span>
+            <TextInput
+              type="date"
+              className="rounded-xl"
+              onChange={(e) =>
+                setDateFilter({
+                  ...filterDate,
+                  akhir: e.target.value,
+                })
+              }
+            />
+          </div>
+        </div>
+        <SearchInput
+          placeholder="Pencarian"
+          onChange={(e) => setFilterText(e.target.value)}
+        />
+      </div>
+      <DataTable
+        columns={columns}
+        data={filteredItems}
+        pagination
+        persistTableHead
+        paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
+      />
+    </>
   );
 }
