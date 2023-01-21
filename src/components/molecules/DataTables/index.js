@@ -137,23 +137,7 @@ export default function DataTables() {
       },
     },
   };
-  //   const conditionalRowStyles = [
-  //     {
-  //       when: (row) => row.status === "Approved",
-  //       style: {
-  //         backgroundColor: "green",
-  //         color: "white",
-  //         "&:hover": {
-  //           cursor: "pointer",
-  //         },
-  //       },
-  //     },
-  //     // You can also pass a callback to style for additional customization
-  //     {
-  //       when: (row) => row.calories < 400,
-  //       style: (row) => ({ backgroundColor: row.isSpecial ? "pink" : "inerit" }),
-  //     },
-  //   ];
+
   return (
     <>
       <div className="flex flex-row justify-between items-center py-5">
