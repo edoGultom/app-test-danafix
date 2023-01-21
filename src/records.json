@@ -25,7 +25,7 @@
         "permintaan":1250000,
         "biaya_layanan":4900,
         "pembayaran":1030000,
-        "status":"Approved",
+        "status":"Rejected",
         "status_date":"03.05.2022",
         "manager_hr":"Irene A."
     },
@@ -40,7 +40,7 @@
         "permintaan":1250000,
         "biaya_layanan":4900,
         "pembayaran":1030000,
-        "status":"Approved",
+        "status":"Rejected",
         "status_date":"03.05.2022",
         "manager_hr":"Irene A."
     },
@@ -85,7 +85,7 @@
         "permintaan":1250000,
         "biaya_layanan":4900,
         "pembayaran":1030000,
-        "status":"Approved",
+        "status":"Rejected",
         "status_date":"03.05.2022",
         "manager_hr":"Irene A."
     },
@@ -130,7 +130,7 @@
         "permintaan":1250000,
         "biaya_layanan":4900,
         "pembayaran":1030000,
-        "status":"Approved",
+        "status":"Rejected",
         "status_date":"03.05.2022",
         "manager_hr":"Irene A."
     },
@@ -160,7 +160,7 @@
         "permintaan":1250000,
         "biaya_layanan":4900,
         "pembayaran":1030000,
-        "status":"Approved",
+        "status":"Rejected",
         "status_date":"03.05.2022",
         "manager_hr":"Irene A."
     },

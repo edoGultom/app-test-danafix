@@ -100,6 +100,22 @@ export default function DataTables() {
       selector: (row) => row.status,
       sortable: true,
       sortField: "status",
+      conditionalCellStyles: [
+        {
+          when: (row) => row.status === "Approved",
+          style: {
+            color: "green",
+            fontWeight: "bold",
+          },
+        },
+        {
+          when: (row) => row.status === "Rejected",
+          style: {
+            color: "red",
+            fontWeight: "bold",
+          },
+        },
+      ],
     },
     {
       name: "Status Date",
@@ -114,7 +130,30 @@ export default function DataTables() {
       sortField: "manager_hr",
     },
   ];
-
+  const customStyles = {
+    headCells: {
+      style: {
+        backgroundColor: "#89CFF0",
+      },
+    },
+  };
+  //   const conditionalRowStyles = [
+  //     {
+  //       when: (row) => row.status === "Approved",
+  //       style: {
+  //         backgroundColor: "green",
+  //         color: "white",
+  //         "&:hover": {
+  //           cursor: "pointer",
+  //         },
+  //       },
+  //     },
+  //     // You can also pass a callback to style for additional customization
+  //     {
+  //       when: (row) => row.calories < 400,
+  //       style: (row) => ({ backgroundColor: row.isSpecial ? "pink" : "inerit" }),
+  //     },
+  //   ];
   return (
     <>
       <div className="flex flex-row justify-between items-center py-5">
@@ -153,6 +192,7 @@ export default function DataTables() {
         columns={columns}
         data={filteredItems}
         pagination
+        customStyles={customStyles}
         persistTableHead
         paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
       />
