@@ -4,8 +4,11 @@ import dataJson from "../../../records.json";
 import SearchInput from "../../atoms/SearchInput";
 import TextInput from "../../atoms/TextInput";
 import * as Moment from "moment";
+import { useSelector } from "react-redux";
 
 export default function DataTables() {
+  const phone = useSelector((state) => state.signReducer.phone_number);
+  // console.log(phone, "phone");
   const [filterText, setFilterText] = useState("");
   const [filterDate, setDateFilter] = useState({
     awal: "",

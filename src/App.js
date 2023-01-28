@@ -1,38 +1,25 @@
-import "../src/styles/tailwind.css";
-import { Provider, useSelector } from "react-redux";
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  Router,
-  redirect,
-} from "react-router-dom";
-import { Dashboard, Login, Pengajuan } from "./pages";
-import configStore from "./redux/store";
+import logo from "./logo.svg";
+import "./App.css";
 
-const { store } = configStore();
-
-const MainApp = () => {
-  const phone = useSelector((state) => state.signReducer.phone_number);
-  console.log(phone);
+function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={phone.length > 0 ? <Pengajuan /> : <Login />}
-        />
-        <Route path="/" element=<Pengajuan /> />
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
-};
+}
 
-const App = () => {
-  return (
-    <Provider store={store}>
-      <MainApp />
-    </Provider>
-  );
-};
 export default App;
