@@ -134,7 +134,12 @@ export default function DataTables() {
       },
     },
   };
-
+  const paginationComponentOptions = {
+    rowsPerPageText: "Tampilkan",
+    rangeSeparatorText: "dari",
+    selectAllRowsItem: true,
+    selectAllRowsItemText: "All",
+  };
   return (
     <>
       <div className="flex flex-row justify-between items-center py-5">
@@ -172,10 +177,12 @@ export default function DataTables() {
       <DataTable
         columns={columns}
         data={filteredItems}
-        pagination
         customStyles={customStyles}
         persistTableHead
         paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
+        paginationPerPage={5}
+        pagination
+        paginationComponentOptions={paginationComponentOptions}
       />
     </>
   );

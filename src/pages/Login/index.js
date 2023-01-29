@@ -20,19 +20,18 @@ const Login = () => {
   return (
     <div className="flex flex-col bg-white h-screen ">
       <Header />
-
-      <div className="flex flex-col items-center justify-center px-40 py-40">
+      <div className="flex flex-col items-center flex-wrap justify-center px-6 py-8 mx-auto md:h-screen md:w-screen sm:h-screen sm:w-screen lg:py-0">
         <p className="text-3xl p-10">Personal account for bussiness</p>
-        <div className="flex items-center justify-start rounded-2xl px-10 py-10  w-5/12 border shadow-lg">
+        <div className="flex flex-row  flex-wrap items-center lg:justify-arround sm:justify-center rounded-2xl p-14 w-5/12 border shadow-lg">
           <TextInput
             placeholder="Phone number"
             lable="Phone number"
             type="text"
-            className="w-full"
+            className="md:w-80 sm:w-28"
             value={form.phone_number}
             onChange={(e) => setForm("phone_number", e.target.value)}
           />
-          <Button className="bg-blue-600" onClick={onSubmit}>
+          <Button className="bg-blue-600 " onClick={onSubmit}>
             Next
           </Button>
         </div>
